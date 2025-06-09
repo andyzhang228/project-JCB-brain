@@ -21,9 +21,9 @@ def interface_content_format(filter_by_type):
                 else:
                     value[i] = value[i]
         elif key == "Byte2":
+            pattern = r"\b[A-Z]*\d+V\d+\b"
             for i in range(len(value)):
                 text = filter_by_type["処理・備考"][i]
-                pattern = r"\b[A-Z]*\d+V\d+\b"
                 match = re.search(pattern, text)
                 if match:
                     value[i] = match.group()
