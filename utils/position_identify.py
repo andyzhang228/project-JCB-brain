@@ -1,14 +1,8 @@
 import pandas as pd
 import os
 
-target_file_list = {}
-
-BASE_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-excel_files_path = os.path.join(BASE_PATH, "excel_files")
-target_file_path = os.path.join(BASE_PATH, "target", "Templete_File_chosen.xlsm")
-
-
 def position_identify(target_file_path, excel_files_path):
+    target_file_list = {}
     fileID = set()
     df = pd.read_excel(target_file_path, header=None)
     for index_row, row in df.iterrows():
@@ -27,7 +21,7 @@ def position_identify(target_file_path, excel_files_path):
         excel_files = os.listdir(excel_files_path)
         matching_files = [str(file) for file in excel_files if filename in file]
         if not matching_files:
-            print(f"警告: 未找到包含 {filename} 的文件")
+            print(f" {filename} が見つからないです。")
             continue
         target_file = matching_files[0]
         if target_file not in target_file_list:
@@ -36,7 +30,3 @@ def position_identify(target_file_path, excel_files_path):
 
     # print(target_file_list)
     return target_file_list
-
-
-if __name__ == "__main__":
-    file_table_identify(target_file_path, excel_files_path)

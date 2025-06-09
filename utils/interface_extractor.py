@@ -4,7 +4,7 @@ import pandas as pd
 def interface_extractor_tool(
     target_file_name: str, target_sheet_name: str, target_table_name: str
 ):
-    print(target_file_name)
+    # print(target_file_name)
     target_file = "./excel_files/" + target_file_name
     df = pd.read_excel(target_file, sheet_name=target_sheet_name, header=None)
 
