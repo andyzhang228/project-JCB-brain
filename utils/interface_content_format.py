@@ -1,3 +1,6 @@
+import re
+
+
 def interface_content_format(filter_by_type):
     comment_index = str("処理・備考")
     binary = str("Binary").lower()
@@ -10,7 +13,7 @@ def interface_content_format(filter_by_type):
                     "Binary" in filter_by_type["処理・備考"][i]
                     or "バイナリ" in filter_by_type["処理・備考"][i]
                 ):
-                    value[i] = "B"  # Binary的情况优先判断
+                    value[i] = "B"
                 elif value[i] == "半角":
                     value[i] = "X"
                 elif value[i] == "半角数字":
@@ -19,10 +22,11 @@ def interface_content_format(filter_by_type):
                     value[i] = value[i]
         elif key == "Byte2":
             for i in range(len(value)):
-                if "9V3" in filter_by_type["処理・備考"][i]:
-                    value[i] = "9V3"
-                elif "S12V3" in filter_by_type["処理・備考"][i]:
-                    value[i] = "S12V3"
+                text = filter_by_type["処理・備考"][i]
+                pattern = r"\b[A-Z]*\d+V\d+\b"
+                match = re.search(pattern, text)
+                if match:
+                    value[i] = match.group()
                 else:
                     value[i] = value[i]
 
