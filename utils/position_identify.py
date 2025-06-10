@@ -16,6 +16,7 @@ def position_identify(target_file_path, excel_files_path):
         ]
         if len(row_content) >= 2:
             format_requests[row_content[1]] = row_content[2:]
+            
 
     for filename, table_name in format_requests.items():
         excel_files = os.listdir(excel_files_path)
