@@ -7,7 +7,7 @@ import os
 def write_to_excel(
     template_path, extracted_content, output_path, target_table_name, interface_or_file
 ):
-    # 创建表头映射字典 - 针对文件格式
+    # ヘッダーマッピング辞書の作成 - ファイルフォーマット用
     if interface_or_file == "file":
         table_header_map = {
             "#": "#",
@@ -50,15 +50,14 @@ def write_to_excel(
         wb_template = load_workbook(output_path)
     else:
         wb_template = load_workbook(template_path)
-    # 为了防止重复写入以及更新数据，如果sheet存在，则删除，重新进行创建
+    # 重複書き込みを防ぎ、データを更新するため、シートが存在する場合は削除して再作成
     if target_table_name in wb_template.sheetnames:
         del wb_template[target_table_name]
 
-    # 创建新的sheet
+    # 新しいシートを作成
     new_sheet = wb_template.create_sheet(title=target_table_name)
 
-    # 写入表头
-
+    # ヘッダーを書き込み
     for i in range(len(new_table_header)):
         new_sheet.cell(row=1, column=i + 2, value=new_table_header[i])
         # print(new_table_header[i])
@@ -92,7 +91,7 @@ def write_to_excel(
             new_sheet.cell(row=i + 2, column=keys_list.index(key) + 2).border = (
                 thin_border
             )
-            # 列の幅を更新
+            # 列幅を更新
             str_value = str(extracted_content[value][i])
             if len(str_value) > col_width[key]:
                 # print(col_width)

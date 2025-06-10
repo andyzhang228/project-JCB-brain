@@ -1,5 +1,5 @@
-from utils.file_extractor import file_extractor_tool
-from utils.G_content_extractor import G_content_extractor
+from utils.file_file.file_extractor import file_extractor_tool
+from utils.file_file.G_content_extractor import G_content_extractor
 import pandas as pd
 
 
@@ -36,7 +36,7 @@ def file_content_format(
                                 break
                     level = df.iloc[G_row_index, header_columns["レベル"]]
 
-                    # G*向下遍历，收集比其大的内容，并收集其内容
+                    # G*から下に走査し、より大きい内容を収集し、その内容を収集
                     target_row_list_by_loop = []
                     for index_row, row in df.iloc[G_row_index + 1 :].iterrows():
                         if row[header_columns["レベル"]] <= level:

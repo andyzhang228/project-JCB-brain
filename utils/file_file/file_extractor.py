@@ -24,7 +24,7 @@ def file_extractor_tool(target_file_name, target_sheet_name, target_table_name):
                 target_table = True
                 break
 
-    # 遍历表头两行，同时收集表头和列索引
+    # ヘッダーの2行を走査し、ヘッダーと列インデックスを同時に収集
     for index_row, row in df.iloc[
         header_start_row_index : header_end_row_index + 1
     ].iterrows():
@@ -49,7 +49,7 @@ def file_extractor_tool(target_file_name, target_sheet_name, target_table_name):
     # print(filter_by_type)
     for key, value in header_columns.items():
         # print(key, value)
-        col_index = header_columns[key]  # 获取列索引
+        col_index = header_columns[key]  # 列インデックスを取得
         # print(f"{key}:{col_index}")
 
         for index_row, row in df.iloc[table_content_row:].iterrows():
@@ -59,7 +59,7 @@ def file_extractor_tool(target_file_name, target_sheet_name, target_table_name):
             ):
                 break
             else:
-                if pd.isna(row.iloc[col_index]):  # 直接使用列索引
+                if pd.isna(row.iloc[col_index]):  # 列インデックスを直接使用
                     filter_by_type[key].append("")  # 空値の場合
                 else:
                     # 元の空白数を保持

@@ -25,7 +25,7 @@ def interface_extractor_tool(
                 target_table = True
                 break
 
-    # 遍历表头两行，同时收集表头和列索引
+    # ヘッダーの2行を走査し、ヘッダーと列インデックスを同時に収集
     for index_row, row in df.iloc[
         header_start_row_index : header_end_row_index + 1
     ].iterrows():
@@ -44,7 +44,7 @@ def interface_extractor_tool(
         elif header_item == "OFFSET":
             col_index = header_columns[header_item] + 1
         else:
-            col_index = header_columns[header_item]  # 获取列索引
+            col_index = header_columns[header_item]  # 列インデックスを取得
 
         current_target = filter_by_type[header_item]
 
@@ -55,7 +55,7 @@ def interface_extractor_tool(
             ):
                 break
             else:
-                if pd.isna(row.iloc[col_index]):  # 直接使用列索引
+                if pd.isna(row.iloc[col_index]):  # 列インデックスを直接使用
                     current_target.append("")  # 空値の場合
                 else:
                     # 元の空白数を保持
