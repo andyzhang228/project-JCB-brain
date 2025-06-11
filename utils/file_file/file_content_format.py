@@ -17,9 +17,7 @@ def file_content_format(
                     filter_by_type["バイト数"][i] = "0"
                 elif "G*" in value[i]:
                     number = value[i].split("G*")[1]
-                    # print(f"G*所在index:{i}")
                     G_index = i
-                    # print(number)
                     target_file = "./excel_files/" + target_file_name
                     df = pd.read_excel(
                         target_file, sheet_name=target_sheet_name, header=None
@@ -28,11 +26,8 @@ def file_content_format(
                         for index_column, column in enumerate(row):
                             if column == value[i]:
                                 G_row_index = index_row
-                                # print(f"G*所在index行:{G_row_index}")
                                 G_column_index = index_column
-                                # print(f"G*所在index列:{G_column_index}")
                                 G_content_index = G_row_index + 1
-                                # print(f"G*下行内容所在index:{G_content_index}")
                                 break
                     level = df.iloc[G_row_index, header_columns["レベル"]]
 
@@ -78,5 +73,4 @@ def file_content_format(
         )
 
     formated_filter_by_type = filter_by_type
-    # print(formated_filter_by_type)
     return formated_filter_by_type

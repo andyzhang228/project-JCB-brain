@@ -16,8 +16,8 @@ Excel Format Tool は、指定された Excel ファイルからテーブルデ�
 
 ```
 format_tool/
-├── main.py                    # メインプログラムエントリー
-├── requirements.txt           # 依存パッケージリスト
+├── main.py                   # メインプログラムエントリー
+├── requirements.txt          # 依存パッケージリスト
 ├── .env                      # 環境変数設定
 ├── README.md                 # プロジェクト説明ドキュメント
 ├── excel_files/              # ソース Excel ファイルディレクトリ
@@ -28,7 +28,7 @@ format_tool/
 │   └── Template.xlsm         # 出力テンプレート
 ├── output/                   # 出力ファイルディレクトリ（自動生成）
 └── utils/                    # ユーティリティモジュール
-    ├── common/              # 共通ツールのフォルダー
+    ├── common/               # 共通ツールのフォルダー
     │   ├── position_identify.py
     |   └── write_to_excel.py
     ├── process_interface_file.py  # インターフェースファイル処理のフォルダー

@@ -33,11 +33,8 @@ def write_to_excel(
         }
 
     keys_list = list(table_header_map.keys())
-    # print(keys_list)
     col_width = {key: 0 for key in keys_list}
-    # print(col_width)
     new_table_header = list(table_header_map.keys())
-    # print(new_table_header)
 
     thin_border = Border(
         left=Side(style="thin"),
@@ -60,7 +57,6 @@ def write_to_excel(
     # ヘッダーを書き込み
     for i in range(len(new_table_header)):
         new_sheet.cell(row=1, column=i + 2, value=new_table_header[i])
-        # print(new_table_header[i])
         # table design
         new_sheet.cell(row=1, column=i + 2).fill = PatternFill(
             start_color="C0C0C0", end_color="C0C0C0", fill_type="solid"

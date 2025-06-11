@@ -14,14 +14,9 @@ def file_extractor_tool(target_file_name, target_sheet_name, target_table_name):
         for column in row:
             if column == target_table_name:
                 target_name_row_index = index_row
-                # print(f"target_name_row_index:--->{target_name_row_index+1}")
                 header_start_row_index = target_name_row_index + 3
-                # print(f"header_start_row_index:--->{header_start_row_index+1}")
                 header_end_row_index = target_name_row_index + 4
-                # print(f"header_end_row_index:--->{header_end_row_index+1}")
                 table_content_row = target_name_row_index + 5
-                # print(f"table_content_row:--->{table_content_row+1}")
-                target_table = True
                 break
 
     # ヘッダーの2行を走査し、ヘッダーと列インデックスを同時に収集
@@ -40,17 +35,10 @@ def file_extractor_tool(target_file_name, target_sheet_name, target_table_name):
                     new_column = "バイト数"
                 table_header.append(new_column)
                 header_columns[new_column] = index_column
-    # table_header.append("OFFSET")
-    # print(table_header)
-    # ['属性', '桁数', 'バイト数', 'シンボル名', '項目名', '説明', 'OFFSET']
-    # print(header_columns)
-    # {'属性': 2, '桁数': 3, 'バイト数': 4, 'シンボル名': 6, '項目名': 7, '説明': 8}
+
     filter_by_type = {filter_type: [] for filter_type in table_header}
-    # print(filter_by_type)
     for key, value in header_columns.items():
-        # print(key, value)
         col_index = header_columns[key]  # 列インデックスを取得
-        # print(f"{key}:{col_index}")
 
         for index_row, row in df.iloc[table_content_row:].iterrows():
             if all(
@@ -64,8 +52,4 @@ def file_extractor_tool(target_file_name, target_sheet_name, target_table_name):
                 else:
                     # 元の空白数を保持
                     filter_by_type[key].append(str(row.iloc[col_index]))
-    # print(header_columns)
-    # for key, value in filter_by_type.items():
-    #     print(f"{key}:{value}")
-    #     print("--------------------------------")
     return filter_by_type, table_header, header_columns
