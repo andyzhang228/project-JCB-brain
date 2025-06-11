@@ -37,7 +37,8 @@ def generate_format(target_file_path):
         # )
         # if not os.path.exists(output_folder_path):
         #     os.makedirs(output_folder_path)
-
+        print(target_file_list)
+        print(filename_list)
         for target_file, target_table_name in target_file_list.items():
             if "インターフェース" in str(target_file):
                 process_interface_file(
@@ -49,6 +50,9 @@ def generate_format(target_file_path):
                     new_file_name=filename_list[target_file]
                 )
             elif "ファイル仕様" in target_file:
+                print(target_file)
+                print(target_table_name)
+                print(output_path)
                 process_file_file(
                     target_file,
                     target_table_name,

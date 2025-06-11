@@ -22,6 +22,7 @@ def process_file_file(
         filter_by_type, table_header, header_columns = file_extractor_tool(
             target_file, file_target_sheet_name, table_name
         )
+        print(filter_by_type)
 
         formated_extracted_content = file_content_format(
             filter_by_type,

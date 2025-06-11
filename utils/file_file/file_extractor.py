@@ -3,20 +3,27 @@ import pandas as pd
 
 def file_extractor_tool(target_file_name, target_sheet_name, target_table_name):
     target_file = "./excel_files/" + target_file_name
+    print(target_sheet_name)
     df = pd.read_excel(target_file, sheet_name=target_sheet_name, header=None)
+    target_name_row_index=None
     header_start_row_index = None
     header_end_row_index = None
     table_content_row = None
     table_header = []
     header_columns = {}
-
+    print(target_table_name)
     for index_row, row in df.iterrows():
+        # print(index_row)
         for column in row:
             if column == target_table_name:
                 target_name_row_index = index_row
+                print(target_name_row_index)
                 header_start_row_index = target_name_row_index + 3
+                print(header_start_row_index)
                 header_end_row_index = target_name_row_index + 4
+                print(header_end_row_index)
                 table_content_row = target_name_row_index + 5
+                print(table_content_row)
                 break
 
     # ヘッダーの2行を走査し、ヘッダーと列インデックスを同時に収集
@@ -52,4 +59,6 @@ def file_extractor_tool(target_file_name, target_sheet_name, target_table_name):
                 else:
                     # 元の空白数を保持
                     filter_by_type[key].append(str(row.iloc[col_index]))
+    
+                    
     return filter_by_type, table_header, header_columns
