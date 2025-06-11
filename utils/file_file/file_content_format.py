@@ -7,6 +7,7 @@ def file_content_format(
     filter_by_type, target_file_name, target_sheet_name, header_columns, table_header
 ):
     target_row_list_by_loop_content = {i: [] for i in table_header}
+    target_row_list_by_loop = []
     number = 0
     G_index = 0
     for key, value in filter_by_type.items():
@@ -32,11 +33,12 @@ def file_content_format(
                     level = df.iloc[G_row_index, header_columns["レベル"]]
 
                     # G*から下に走査し、より大きい内容を収集し、その内容を収集
-                    target_row_list_by_loop = []
+
                     for index_row, row in df.iloc[G_row_index + 1 :].iterrows():
                         if row[header_columns["レベル"]] <= level:
                             break
                         target_row_list_by_loop.append(index_row)
+                    print(target_row_list_by_loop)
 
                     for repeat_count in range(int(number)):
                         G_content_extractor(

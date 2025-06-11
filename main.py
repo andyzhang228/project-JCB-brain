@@ -26,7 +26,9 @@ def generate_format(target_file_path):
         None
     """
     try:
-        target_file_list,filename_list = position_identify(target_file_path, excel_files_path)
+        target_file_list, filename_list = position_identify(
+            target_file_path, excel_files_path
+        )
         if not target_file_list:
             raise FileNotFoundError(f" {target_file} が見つからないです。")
         output_path = os.path.join(BASE_PATH, "output")
@@ -37,8 +39,7 @@ def generate_format(target_file_path):
         # )
         # if not os.path.exists(output_folder_path):
         #     os.makedirs(output_folder_path)
-        print(target_file_list)
-        print(filename_list)
+
         for target_file, target_table_name in target_file_list.items():
             if "インターフェース" in str(target_file):
                 process_interface_file(
@@ -47,18 +48,16 @@ def generate_format(target_file_path):
                     output_path,
                     template_path,
                     target_table_identify_path,
-                    new_file_name=filename_list[target_file]
+                    new_file_name=filename_list[target_file],
                 )
             elif "ファイル仕様" in target_file:
-                print(target_file)
-                print(target_table_name)
-                print(output_path)
+
                 process_file_file(
                     target_file,
                     target_table_name,
                     output_path,
                     template_path,
-                    new_file_name=filename_list[target_file]
+                    new_file_name=filename_list[target_file],
                 )
     except Exception as e:
         print(f"Error: {e}")

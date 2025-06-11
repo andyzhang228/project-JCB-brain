@@ -1,7 +1,7 @@
 import os
 from utils.file_file.file_extractor import file_extractor_tool
 from utils.file_file.file_content_format import file_content_format
-from utils.common.write_to_excel import write_to_excel
+from utils.common.write_to_excel_VBA import write_to_excel_VBA
 
 
 def process_file_file(
@@ -16,13 +16,12 @@ def process_file_file(
         output_folder_path,
         f"{new_file_name}_データ作成.xlsm",
     )
-    
+
     for table_name in target_table_name:
         file_target_sheet_name = f"ファイル仕様({table_name})"
         filter_by_type, table_header, header_columns = file_extractor_tool(
             target_file, file_target_sheet_name, table_name
         )
-        print(filter_by_type)
 
         formated_extracted_content = file_content_format(
             filter_by_type,
@@ -31,7 +30,7 @@ def process_file_file(
             header_columns,
             table_header,
         )
-        write_to_excel(
+        write_to_excel_VBA(
             template_path,
             formated_extracted_content,
             output_file_path,
