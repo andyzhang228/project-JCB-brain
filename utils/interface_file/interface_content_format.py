@@ -10,8 +10,8 @@ def interface_content_format(filter_by_type):
         if key == "タイプ":
             for i in range(len(value)):
                 if value[i] == "半角" and (
-                    "Binary" in filter_by_type["処理・備考"][i]
-                    or "バイナリ" in filter_by_type["処理・備考"][i]
+                    binary in filter_by_type[comment_index][i]
+                    or binary_jp in filter_by_type[comment_index][i]
                 ):
                     value[i] = "B"
                 elif value[i] == "半角":
@@ -23,7 +23,7 @@ def interface_content_format(filter_by_type):
         elif key == "Byte2":
             pattern = r"\b[A-Z]*\d+V\d+\b"
             for i in range(len(value)):
-                text = filter_by_type["処理・備考"][i]
+                text = filter_by_type[comment_index][i]
                 match = re.search(pattern, text)
                 if match:
                     value[i] = match.group()

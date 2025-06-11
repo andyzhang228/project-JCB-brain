@@ -11,8 +11,8 @@ def process_interface_file(
     output_folder_path,
     template_path,
     target_table_identify_path,
+    new_file_name,
 ):
-    interface_output_number = 1
     interface_or_file = "interface"
     target_table_name = {
         table_name: target_table_identify(target_table_identify_path, table_name)
@@ -22,7 +22,7 @@ def process_interface_file(
 
     output_interface_path = os.path.join(
         output_folder_path,
-        f"interface_excel_{interface_output_number}.xlsx",
+        f"{new_file_name}_データ作成.xlsm",
     )
 
     interface_target_sheet_name = os.getenv("INTERFACE_SHEET_NAME")
@@ -38,4 +38,3 @@ def process_interface_file(
             table_name,
             interface_or_file,
         )
-    interface_output_number += 1

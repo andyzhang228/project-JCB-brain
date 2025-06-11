@@ -90,7 +90,7 @@ def write_to_excel(
             # 列幅を更新
             str_value = str(extracted_content[value][i])
             if len(str_value) > col_width[key]:
-                # print(col_width)
+                # (col_width)
                 col_width[key] = len(str_value) * 1.2
 
     for key, value in col_width.items():

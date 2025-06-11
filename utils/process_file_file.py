@@ -9,13 +9,14 @@ def process_file_file(
     target_table_name,
     output_folder_path,
     template_path,
+    new_file_name,
 ):
-    file_output_number = 1
     interface_or_file = "file"
     output_file_path = os.path.join(
         output_folder_path,
-        f"file_excel_{file_output_number}.xlsx",
+        f"{new_file_name}_データ作成.xlsm",
     )
+    
     for table_name in target_table_name:
         file_target_sheet_name = f"ファイル仕様({table_name})"
         filter_by_type, table_header, header_columns = file_extractor_tool(
@@ -36,4 +37,3 @@ def process_file_file(
             table_name,
             interface_or_file,
         )
-    file_output_number += 1

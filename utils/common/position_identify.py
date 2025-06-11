@@ -5,6 +5,7 @@ import os
 def position_identify(target_file_path, excel_files_path):
     target_file_list = {}
     fileID = set()
+    filename_list={}
     df = pd.read_excel(target_file_path, header=None)
     for index_row, row in df.iterrows():
         if row[0] == "●":
@@ -21,6 +22,9 @@ def position_identify(target_file_path, excel_files_path):
     for filename, table_name in format_requests.items():
         excel_files = os.listdir(excel_files_path)
         matching_files = [str(file) for file in excel_files if filename in file]
+        if matching_files[0] not in filename_list:
+            filename_list[matching_files[0]]=""
+        filename_list[matching_files[0]]=filename  
         if not matching_files:
             print(f" {filename} が見つからないです。")
             continue
@@ -28,6 +32,5 @@ def position_identify(target_file_path, excel_files_path):
         if target_file not in target_file_list:
             target_file_list[target_file] = []
         target_file_list[target_file].extend(table_item for table_item in table_name)
-
-    # print(target_file_list)
-    return target_file_list
+        
+    return target_file_list,filename_list
